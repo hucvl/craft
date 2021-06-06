@@ -1,0 +1,637 @@
+{
+  "dataset": "SVQA-v1.0",
+  "types": {
+    "Object": null,
+    "ObjectSet": null,
+    "ObjectSetList": null,
+    "Event": null,
+    "EventSet": null,
+    "EventSetList": null,
+    "Integer": null,
+    "Bool": null,
+    "BoolList": null,
+    "Shape": [
+      "cube",
+      "triangle",
+      "circle"
+    ],
+    "Color": [
+      "gray",
+      "red",
+      "blue",
+      "green",
+      "brown",
+      "purple",
+      "cyan",
+      "yellow"
+    ],
+    "Relation": [
+      "left",
+      "right",
+      "above",
+      "below"
+    ],
+    "Size": [
+      "small",
+      "large"
+    ]
+  },
+  "functions": [
+    {
+      "name": "start_scene",
+      "inputs": [],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "end_scene",
+      "inputs": [],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_color",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Color"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_shape",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Shape"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_size",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Size"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "unique",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "output": "Object",
+      "terminal": false,
+      "properties": []
+    },
+    {
+      "name": "relate",
+      "inputs": [
+        "Object"
+      ],
+      "side_inputs": [
+        "Relation"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "union",
+      "inputs": [
+        "ObjectSet",
+        "ObjectSet"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "intersect",
+      "inputs": [
+        "ObjectSet",
+        "ObjectSet"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "intersect_list",
+      "inputs": [
+        "ObjectSetList",
+        "ObjectSet"
+      ],
+      "output": "ObjectSetList",
+      "terminal": false
+    },
+    {
+      "name": "difference",
+      "inputs": [
+        "ObjectSet",
+        "ObjectSet"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "count",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "output": "Integer",
+      "terminal": true
+    },
+    {
+      "name": "query_shape",
+      "inputs": [
+        "Object"
+      ],
+      "output": "Shape",
+      "terminal": true
+    },
+    {
+      "name": "query_color",
+      "inputs": [
+        "Object"
+      ],
+      "output": "Color",
+      "terminal": true
+    },
+    {
+      "name": "query_size",
+      "inputs": [
+        "Object"
+      ],
+      "output": "Size",
+      "terminal": true
+    },
+    {
+      "name": "exist",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "event_exist",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "exist_list",
+      "inputs": [
+        "ObjectSetList"
+      ],
+      "output": "BoolList",
+      "terminal": false
+    },
+    {
+      "name": "any_false",
+      "inputs": [
+        "BoolList"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "any_true",
+      "inputs": [
+        "BoolList"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "equal_color",
+      "inputs": [
+        "Color",
+        "Color"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "equal_shape",
+      "inputs": [
+        "Shape",
+        "Shape"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "equal_integer",
+      "inputs": [
+        "Integer",
+        "Integer"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "less_than",
+      "inputs": [
+        "Integer",
+        "Integer"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "greater_than",
+      "inputs": [
+        "Integer",
+        "Integer"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "equal_size",
+      "inputs": [
+        "Size",
+        "Size"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "equal_object",
+      "inputs": [
+        "Object",
+        "Object"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "same_size",
+      "inputs": [
+        "Object"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "same_color",
+      "inputs": [
+        "Object"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "same_shape",
+      "inputs": [
+        "Object"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "ObjectSet",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "filter_unique",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Object",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "filter_count",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Integer",
+      "terminal": true,
+      "template_only": true
+    },
+    {
+      "name": "filter_exist",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "side_inputs": [
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Bool",
+      "terminal": true,
+      "template_only": true
+    },
+    {
+      "name": "relate_filter",
+      "inputs": [
+        "Object"
+      ],
+      "side_inputs": [
+        "Relation",
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "ObjectSet",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "relate_filter_unique",
+      "inputs": [
+        "Object"
+      ],
+      "side_inputs": [
+        "Relation",
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Object",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "relate_filter_count",
+      "inputs": [
+        "Object"
+      ],
+      "side_inputs": [
+        "Relation",
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Integer",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "relate_filter_exist",
+      "inputs": [
+        "Object"
+      ],
+      "side_inputs": [
+        "Relation",
+        "Size",
+        "Color",
+        "Shape"
+      ],
+      "output": "Bool",
+      "terminal": false,
+      "template_only": true
+    },
+    {
+      "name": "events",
+      "inputs": [],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_events",
+      "inputs": [
+        "EventSet",
+        "Object"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_collision",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_collision_with_dynamics",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_enter_container",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_enter_container_list",
+      "inputs": [
+        "EventSetList"
+      ],
+      "output": "EventSetList",
+      "terminal": false
+    },
+    {
+      "name": "filter_collide_ground",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_collide_ground_list",
+      "inputs": [
+        "EventSetList"
+      ],
+      "output": "EventSetList",
+      "terminal": false
+    },
+    {
+      "name": "filter_collide_basket",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_collide_basket_list",
+      "inputs": [
+        "EventSetList"
+      ],
+      "output": "EventSetList",
+      "terminal": false
+    },
+    {
+      "name": "filter_first",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "Event",
+      "terminal": false
+    },
+    {
+      "name": "filter_last",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "Event",
+      "terminal": false
+    },
+    {
+      "name": "event_partner",
+      "inputs": [
+        "Object",
+        "Event"
+      ],
+      "output": "Object",
+      "terminal": false
+    },
+    {
+      "name": "filter_moving_objects",
+      "inputs": [
+        "ObjectSet",
+        "Integer"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_stationary_objects",
+      "inputs": [
+        "ObjectSet",
+        "Integer"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_objects_from_events",
+      "inputs": [
+        "EventSet"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_objects_from_events_list",
+      "inputs": [
+        "EventSetList"
+      ],
+      "output": "ObjectSetList",
+      "terminal": false
+    },
+    {
+      "name": "filter_dynamic_objects",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "start_scene_step",
+      "inputs": [
+      ],
+      "output": "Integer",
+      "terminal": false
+    },
+    {
+      "name": "end_scene_step",
+      "inputs": [
+      ],
+      "output": "Integer",
+      "terminal": false
+    },
+    {
+      "name": "counterfact_events",
+      "inputs": [
+        "Object"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "counterfact_events_list",
+      "inputs": [
+        "ObjectSet"
+      ],
+      "output": "EventSetList",
+      "terminal": false
+    },
+    {
+      "name": "as_list",
+      "inputs": [
+        "Object"
+      ],
+      "output": "ObjectSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_before",
+      "inputs": [
+        "EventSet",
+        "Event"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "filter_after",
+      "inputs": [
+        "EventSet",
+        "Event"
+      ],
+      "output": "EventSet",
+      "terminal": false
+    },
+    {
+      "name": "is_before",
+      "inputs": [
+        "Event",
+        "Event"
+      ],
+      "output": "Bool",
+      "terminal": true
+    },
+    {
+      "name": "is_after",
+      "inputs": [
+        "Event",
+        "Event"
+      ],
+      "output": "Bool",
+      "terminal": true
+    }
+  ]
+}

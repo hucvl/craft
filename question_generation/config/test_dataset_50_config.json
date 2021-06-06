@@ -1,0 +1,82 @@
+{
+  "dataset_size": 50,
+  "executable_path": "../../simulation/2d/SVQA-Box2D/Build/bin/x86_64/Release/Testbed",
+  "executable_working_directory": "../../simulation/2d/SVQA-Box2D/Testbed",
+  "metadata_file_path": "../svqa/metadata.json",
+  "output_folder_path": "out/Dataset_50_Test",
+  "offline": true,
+  "simulation_configs": [
+    {
+      "id": 1,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 2,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 3,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 4,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 5,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 6,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 7,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 8,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 9,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 10,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    }
+  ]
+}
+
+

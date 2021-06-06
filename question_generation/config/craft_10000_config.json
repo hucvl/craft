@@ -1,0 +1,161 @@
+{
+  "dataset_size": 10000,
+  "executable_path": "../../simulation/2d/SVQA-Box2D/Build/bin/x86_64/Release/Testbed",
+  "executable_working_directory": "../../simulation/2d/SVQA-Box2D/Testbed",
+  "metadata_file_path": "../svqa/metadata.json",
+  "output_folder_path": "out/CRAFT_10K",
+  "do_not_generate_questions": false,
+  "sim_ids_for_each_split": {
+    "train": null,
+    "validation": null,
+    "test": null
+  },
+  "offline": true,
+  "perturbation_config": {
+    "amount": 0.02,
+    "perturbations_per_simulation": 3
+  },
+  "simulation_configs": [
+    {
+      "id": 1,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 2,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 3,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 4,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 5,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 6,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 7,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 8,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 9,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 10,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 11,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 12,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 13,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 14,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 15,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 16,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 17,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 18,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 19,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    },
+    {
+      "id": 20,
+      "step_count": 600,
+      "width": 256,
+      "height": 256,
+      "excluded_task_ids": null
+    }
+  ]
+}
+

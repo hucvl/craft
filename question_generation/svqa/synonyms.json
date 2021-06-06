@@ -1,0 +1,139 @@
+{
+  "thing": [
+    "thing",
+    "object"
+  ],
+  "sphere": [
+    "sphere",
+    "ball"
+  ],
+  "cube": [
+    "cube",
+    "block"
+  ],
+  "large": [
+    "large",
+    "big"
+  ],
+  "small": [
+    "small",
+    "tiny"
+  ],
+  "metal": [
+    "metallic",
+    "metal",
+    "shiny"
+  ],
+  "rubber": [
+    "rubber",
+    "matte"
+  ],
+  "left": [
+    "left of",
+    "to the left of",
+    "on the left side of"
+  ],
+  "right": [
+    "right of",
+    "to the right of",
+    "on the right side of"
+  ],
+  "behind": [
+    "behind"
+  ],
+  "front": [
+    "in front of"
+  ],
+  "above": [
+    "above"
+  ],
+  "below": [
+    "below"
+  ],
+  "stable": [
+    "stable",
+    "stationary"
+  ],
+  "enable": [
+    "enable",
+    "help",
+    "allow"
+  ],
+  "enables": [
+    "enables",
+    "helps",
+    "allows"
+  ],
+    "cause": [
+    "cause",
+    "stimulate",
+    "trigger"
+  ],
+    "causes": [
+    "causes",
+    "stimulates",
+    "triggers"
+  ],
+    "prevent": [
+    "prevent",
+    "keep",
+    "hold",
+    "block",
+    "hinder"
+  ],
+  "prevents": [
+    "prevents",
+    "keeps",
+    "holds",
+    "blocks",
+    "hinders"
+  ],
+    "prevented": [
+    "prevented",
+    "kept",
+    "held",
+    "blocked"
+  ],
+  "enter": [
+    "enter",
+    "go into",
+    "get into",
+    "end up in",
+    "fall into"
+  ],
+  "entering": [
+    "entering",
+    "going into",
+    "getting into",
+    "ending up in",
+    "falling into"
+  ],
+  "enters": [
+    "enters",
+    "goes into",
+    "gets into",
+    "ends up in",
+    "falls into"
+  ],
+  "fall to": [
+    "fall to",
+    "hit"
+  ],
+  "falling to": [
+    "falling to",
+    "hitting"
+  ],
+  "falls to": [
+    "falls to",
+    "hits"
+  ],
+  "ground": [
+    "ground",
+    "floor"
+  ],
+  "basket": [
+    "basket",
+    "container",
+    "bucket"
+  ]
+}

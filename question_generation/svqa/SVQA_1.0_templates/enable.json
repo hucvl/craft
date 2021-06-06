@@ -1,0 +1,1003 @@
+[
+  {
+    "text": [
+      "Does the <Z> <C> <S> *enable* the <Z2> <C2> <S2> to *fall to* the *ground*?",
+      "Does the <Z> <C> <S> *enable* the collision between the <Z2> <C2> <S2> and the *ground*?",
+      "There is a <Z> <C> <S>, does it *enable* the <Z2> <C2> <S2> to *fall to* the *ground*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_collide_ground"
+      },
+      {
+        "inputs": [
+          2
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          3
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          5
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          6
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          4, 9
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_collide_ground"
+      },
+      {
+        "inputs": [
+          12
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+         13
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          4, 14
+        ],
+        "type": "difference"
+      },
+      {
+        "side_inputs": [
+          "<Z2>"
+        ],
+        "inputs": [
+          10
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C2>"
+        ],
+        "inputs": [
+          16
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S2>"
+        ],
+        "inputs": [
+          17
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          18
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          19
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          15, 20
+        ],
+        "type": "intersect"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          21, 22
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          23
+        ],
+        "type": "exist"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      },
+      {
+        "type": "Size",
+        "name": "<Z2>"
+      },
+      {
+        "type": "Color",
+        "name": "<C2>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S2>"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "text": [
+      "Does the <Z> <C> <S> *enable* the <Z2> <C2> <S2> to *enter* the *basket*?",
+      "There is a <Z> <C> <S>, does it *enable* the <Z2> <C2> <S2> to *enter* the *basket*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_enter_container"
+      },
+      {
+        "inputs": [
+          2
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          4
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          5
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          6
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          3, 8
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          10
+        ],
+        "type": "filter_enter_container"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          3, 12
+        ],
+        "type": "difference"
+      },
+      {
+        "side_inputs": [
+          "<Z2>"
+        ],
+        "inputs": [
+          9
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C2>"
+        ],
+        "inputs": [
+          14
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S2>"
+        ],
+        "inputs": [
+          15
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          16
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          17
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          13, 18
+        ],
+        "type": "intersect"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          19, 20
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          21
+        ],
+        "type": "exist"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      },
+      {
+        "type": "Size",
+        "name": "<Z2>"
+      },
+      {
+        "type": "Color",
+        "name": "<C2>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S2>"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "text": [
+      "Does the <Z> <C> <S> *enable* the <Z2> <C2> <S2> to collide with the *basket*?",
+      "Does the <Z> <C> <S> *enable* the collision between the <Z2> <C2> <S2> and the *basket*?",
+      "There is a <Z> <C> <S>, does it *enable* the <Z2> <C2> <S2> to collide with the *basket*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_collide_basket"
+      },
+      {
+        "inputs": [
+          2
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          3
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          5
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          6
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          4, 9
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_collide_basket"
+      },
+      {
+        "inputs": [
+          12
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+         13
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          4, 14
+        ],
+        "type": "difference"
+      },
+      {
+        "side_inputs": [
+          "<Z2>"
+        ],
+        "inputs": [
+          10
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C2>"
+        ],
+        "inputs": [
+          16
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S2>"
+        ],
+        "inputs": [
+          17
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          18
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          19
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          15, 20
+        ],
+        "type": "intersect"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          21, 22
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          23
+        ],
+        "type": "exist"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      },
+      {
+        "type": "Size",
+        "name": "<Z2>"
+      },
+      {
+        "type": "Color",
+        "name": "<C2>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S2>"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "text": [
+      "How many objects does the <Z> <C> <S> *enable* to *fall to* the *ground*?",
+      "What is the number of objects that the <Z> <C> <S> *enables* to *fall to* the *ground*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          2
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          3
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          4
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_collide_ground"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          10
+        ],
+        "type": "filter_collide_ground"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          12
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          9, 13
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          14, 6
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          15, 16
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          17
+        ],
+        "type": "count"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      }
+    ],
+    "constraints": []
+  },
+  {
+    "text": [
+      "How many objects does the <Z> <C> <S> *enable* to *enter* the *basket*?",
+      "What is the number of objects that the <Z> <C> <S> *enables* to *enter* the *basket*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          2
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          3
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          4
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_enter_container"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          10
+        ],
+        "type": "filter_enter_container"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          12
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          9, 13
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          14, 6
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          15, 16
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          17
+        ],
+        "type": "count"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      }
+    ],
+    "constraints": []
+  },
+    {
+    "text": [
+      "How many objects does the <Z> <C> <S> *enable* to collide with the *basket*?",
+      "What is the number of objects that the <Z> <C> <S> *enables* to collide with the *basket*?"
+    ],
+    "nodes": [
+      {
+        "inputs": [],
+        "type": "start_scene"
+      },
+      {
+        "inputs": [],
+        "type": "events"
+      },
+      {
+        "side_inputs": [
+          "<Z>"
+        ],
+        "inputs": [
+          0
+        ],
+        "type": "filter_size"
+      },
+      {
+        "side_inputs": [
+          "<C>"
+        ],
+        "inputs": [
+          2
+        ],
+        "type": "filter_color"
+      },
+      {
+        "side_inputs": [
+          "<S>"
+        ],
+        "inputs": [
+          3
+        ],
+        "type": "filter_shape"
+      },
+      {
+        "inputs": [
+          4
+        ],
+        "type": "unique"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "as_list"
+      },
+      {
+        "inputs": [
+          1
+        ],
+        "type": "filter_collide_basket"
+      },
+      {
+        "inputs": [
+          7
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          8
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          5
+        ],
+        "type": "counterfact_events"
+      },
+      {
+        "inputs": [
+          10
+        ],
+        "type": "filter_collide_basket"
+      },
+      {
+        "inputs": [
+          11
+        ],
+        "type": "filter_objects_from_events"
+      },
+      {
+        "inputs": [
+          12
+        ],
+        "type": "filter_dynamic_objects"
+      },
+      {
+        "inputs": [
+          9, 13
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [
+          14, 6
+        ],
+        "type": "difference"
+      },
+      {
+        "inputs": [],
+        "type": "start_scene_step"
+      },
+      {
+        "inputs": [
+          15, 16
+        ],
+        "type": "filter_moving_objects"
+      },
+      {
+        "inputs": [
+          17
+        ],
+        "type": "count"
+      }
+    ],
+    "params": [
+      {
+        "type": "Size",
+        "name": "<Z>"
+      },
+      {
+        "type": "Color",
+        "name": "<C>"
+      },
+      {
+        "type": "Shape",
+        "name": "<S>"
+      }
+    ],
+    "constraints": []
+  }
+]
