@@ -1,0 +1,9 @@
+loguru~=0.5.3
+tabulate~=0.8.9
+pandas~=1.2.4
+numpy~=1.20.3
+ujson~=4.0.2
+deepdiff~=5.5.0
+plotly~=4.14.3
+colour~=0.1.5
+imblearn~=0.0
