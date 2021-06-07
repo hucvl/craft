@@ -1,0 +1,18 @@
+# @package _group_
+architecture: MACVideoBaseline
+input_size: null
+output_size: null
+pool_size: 5
+dropout: 0.2
+mac:
+  dim: 256
+  embed_hidden: 256
+  max_step: 12
+  self_attention: true
+  memory_gate: true
+frame_encoder:
+  architecture: r3d_18
+  input_size: 256
+  pretrained: true
+  freeze: false
+  num_layers: 4

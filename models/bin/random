@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+
+import os
+import os.path as osp
+import random
+
+import click
+import numpy as np
+
+from intphys.data import CRAFT
+
+
+def format_acc(acc):
+    return round(100 * acc, 2)
+
+
+@click.command()
+@click.option("--path", type=click.Path(exists=True))
+@click.option("--test-split", type=str, default="test")
+@click.option("--split-info", type=str, default="random")
+@click.option("--seed", type=int, default=1)
+def main(path, test_split, split_info, seed):
+    np.random.seed(seed)
+    path = osp.abspath(osp.expanduser(path))
+    train_data = CRAFT(path=path, split="train", split_info=split_info)
+    test_data = CRAFT(path=path, split=test_split, split_info=split_info)
+    all_answers = [q["answer"].lower() for q in train_data.questions]
+    all_answers = sorted(list(set(all_answers)))
+    # indices = np.random.randint(0, len(all_answers), len(test_data))
+    num_correct, num_examples = dict(), dict()
+    for (i, q) in enumerate(test_data.questions):
+        subtask = q["question_type"].lower()
+        answer = q["answer"].lower()
+        index = np.random.randint(0, len(all_answers), 1)[0]
+        guess = all_answers[index]
+        if guess == answer:
+            num_correct[subtask] = 1 + num_correct.get(subtask, 0)
+        num_examples[subtask] = 1 + num_examples.get(subtask, 0)
+
+    acc = format_acc(sum(num_correct.values()) / sum(num_examples.values()))
+    print("random guess accuracy = {}%".format(acc))
+    for subtask in sorted(num_correct.keys()):
+        acc = num_correct[subtask] / num_examples[subtask]
+        print("-- task = {}, accuracy = {}%".format(subtask, format_acc(acc)))
+
+    atype_dict = dict()
+    for q in train_data.questions:
+        atype = q["answer_type"].lower()
+        if not atype in atype_dict.keys():
+            atype_dict[atype] = set()
+        atype_dict[atype].add(q["answer"].lower())
+    for k in atype_dict.keys():
+        atype_dict[k] = sorted(list(atype_dict[k]))
+    
+    num_correct, num_examples = dict(), dict()
+    for (i, q) in enumerate(test_data.questions):
+        subtask = q["question_type"].lower()
+        atype = q["answer_type"].lower()
+        answer = q["answer"].lower()
+        num_answers = len(atype_dict[atype])
+        index = np.random.randint(0, num_answers, 1)[0]
+        guess = atype_dict[atype][index]
+        if guess == answer:
+            num_correct[subtask] = 1 + num_correct.get(subtask, 0)
+        num_examples[subtask] = 1 + num_examples.get(subtask, 0)
+
+    acc = format_acc(sum(num_correct.values()) / sum(num_examples.values()))
+    print("random guess accuracy = {}%".format(acc))
+    for subtask in sorted(num_correct.keys()):
+        acc = num_correct[subtask] / num_examples[subtask]
+        print("-- task = {}, accuracy = {}%".format(subtask, format_acc(acc)))    
+
+
+if __name__ == "__main__":
+    main()

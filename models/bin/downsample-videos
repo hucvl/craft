@@ -1,0 +1,28 @@
+#!/bin/bash
+
+FPS="5"
+# DATASET_DIR="/kuacc/users/ikesen16/data/intphys/Dataset_3000_230920"
+DATASET_DIR="/userfiles/ikesen16/data/craft"
+VIDEOS_DIR="$DATASET_DIR/videos"
+DOWNSAMPLED_DIR="/kuacc/users/ikesen16/data/downsampled/${FPS}-fps"
+
+if [ ! -d "$DATASET_DIR" ]; then
+    echo "Dataset directory does not exist."; exit 1
+fi
+
+sim_dirs=($(ls $VIDEOS_DIR))
+[ -d "$DOWNSAMPLED_DIR" ] || mkdir -p $DOWNSAMPLED_DIR
+for sim_id in "${sim_dirs[@]}"; do
+    sim_videos=($(ls $VIDEOS_DIR/$sim_id))
+    downsampled_subdir="${DOWNSAMPLED_DIR}/${sim_id}"
+    [ -d "$downsampled_subdir" ] || mkdir -p "$downsampled_subdir"
+    for sim_video in "${sim_videos[@]}"; do
+		video_path="$VIDEOS_DIR/$sim_id/$sim_video"
+		filename=$(basename -- $video_path)
+		filename="${filename%.*}"
+		downsampled_path="${DOWNSAMPLED_DIR}/${sim_id}/${filename}.mp4"
+		printf 'Processing: %100s\r' "$downsampled_path"
+		ffmpeg -y -i "$video_path" -filter:v fps=fps="$FPS" \
+		       "$downsampled_path" > /dev/null 2>&1
+    	done
+done

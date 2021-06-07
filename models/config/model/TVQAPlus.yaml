@@ -1,0 +1,42 @@
+# @package _group_
+architecture: TVQAPlus
+input_size: null
+output_size: null
+input_width: null
+input_height: null
+dropout: 0.2
+pool_size: 5
+question_encoder:
+  architecture: LSTMEncoder
+  hidden_size: 256
+  embed_size: 256
+  vocab_size: null
+  bidirectional: false
+frame_encoder:
+  architecture: resnet18
+  input_size: 256
+  pretrained: true
+  freeze: false
+  num_layers: 4
+stage:
+  t_iter: 0
+  extra_span_length: 3
+  add_local: false
+  num_negatives: 2
+  negative_pool_size: 0
+  num_hard: 2
+  drop_topk: 0
+  margin: 0.1
+  hidden_size: 256
+  scale: 10.0
+  alpha: 20.0
+  att_loss_type: "lse"
+  input_encoder_n_blocks: 1
+  input_encoder_n_conv: 2
+  input_encoder_kernel_size: 7
+  input_encoder_n_heads: 0
+  add_non_visual: false
+  cls_encoder_n_blocks: 1
+  cls_encoder_n_conv: 2
+  cls_encoder_kernel_size: 5
+  cls_encoder_n_heads: 0

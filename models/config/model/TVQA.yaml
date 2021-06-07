@@ -1,0 +1,20 @@
+# @package _group_
+architecture: TVQA
+input_size: null
+output_size: null
+input_width: null
+input_height: null
+dropout: 0.2
+pool_size: 5
+tvqa:
+  lstm_hidden_size_1: 256
+  lstm_hidden_size_2: 256
+  mlp_hidden_size: 256
+  mlp_num_layers: 2
+  embed_size: 256
+frame_encoder:
+  architecture: resnet18
+  input_size: 256
+  pretrained: true
+  freeze: false
+  num_layers: 4

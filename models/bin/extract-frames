@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+
+import os
+import os.path as osp
+import json
+import re
+from copy import deepcopy
+from itertools import product
+from multiprocessing import Pool
+
+
+import click
+import numpy as np
+from tqdm import tqdm
+from torchvision.io import read_video, read_video_timestamps
+from torchvision.utils import save_image
+import cv2
+
+
+def read_first_frame(filepath):
+    timestamp = read_video_timestamps(filepath, pts_unit="sec")[0]
+    frame = read_video(
+        filepath,
+        pts_unit="sec",
+        start_pts=timestamp[0],
+        end_pts=timestamp[1])[0][0]
+    return cv2.cvtColor(frame.squeeze(0).numpy(), cv2.COLOR_RGB2BGR)
+
+
+def read_last_frame(filepath):
+    timestamp = read_video_timestamps(filepath, pts_unit="sec")[0]
+    frame = read_video(
+        filepath,
+        pts_unit="sec",
+        start_pts=timestamp[-2],
+        end_pts=timestamp[-1])[0][-1]
+    return cv2.cvtColor(frame.squeeze(0).numpy(), cv2.COLOR_RGB2BGR)
+
+
+def read_frames(filepath):
+    first_frame = read_first_frame(filepath)
+    last_frame = read_last_frame(filepath)
+    return (first_frame, last_frame)
+
+
+def listdir(dir):
+    files = os.listdir(dir)
+    return [osp.join(dir, f) for f in files]
+
+
+def makedirs(video_rootdir, frame="first"):
+    frame_rootdir = video_rootdir.replace("videos", f"{frame}_frames") 
+    if not osp.isdir(frame_rootdir): os.makedirs(frame_rootdir)
+    for video_subdir in listdir(video_rootdir):
+        frame_subdir = video_subdir.replace("videos", f"{frame}_frames")
+        if not osp.isdir(frame_subdir): os.makedirs(frame_subdir)
+
+def extract_frames(filepath):
+    first_frame, last_frame = read_frames(filepath)
+    path = filepath.replace("mp4", "png").replace("mpg", "png")
+    cv2.imwrite(path.replace("videos", "first_frames"), first_frame)
+    cv2.imwrite(path.replace("videos", "last_frames"), last_frame)
+
+
+@click.command()
+@click.option("--datadir", default="/userfiles/ikesen16/data/craft")
+@click.option("--workers", default=0)
+def main(datadir, workers):
+    datadir = osp.abspath(osp.expanduser(datadir))
+    if not osp.isdir(datadir): raise Exception("datadir does not exist")
+    video_rootdir = osp.join(osp.join(datadir, "videos"))
+    video_files, video_dirs = [], listdir(video_rootdir)
+    for video_dir in video_dirs:
+        video_files.extend(listdir(video_dir))
+
+    makedirs(video_rootdir, frame="first")
+    makedirs(video_rootdir, frame="last")
+
+    if workers == 0:
+        for filepath in tqdm(video_files):
+            extract_frames(filepath)
+        print("done"); return
+
+    with Pool(processes=workers) as p:
+        p.map(extract_frames, video_files)
+    print("done")
+
+if __name__ == "__main__":
+    main()

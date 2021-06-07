@@ -1,0 +1,27 @@
+# hydra related
+hydra:
+  run:
+    dir: .
+
+# experiment
+seed: 1
+trainer:
+  gpus: 1
+
+# data loader
+loader:
+  batch_size: 64
+  pin_memory: false
+  num_workers: 5
+  shuffle: false
+
+# checkpoint path
+checkpoint: null
+
+# output path
+output: null
+
+# defaults
+defaults:
+  - hydra/job_logging: disabled
+  - dataset: CRAFT
