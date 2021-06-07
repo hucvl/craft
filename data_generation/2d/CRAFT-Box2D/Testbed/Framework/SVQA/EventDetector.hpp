@@ -1,0 +1,1 @@
+// TODO: Decouple event detection components from SimulationBase.h (?)
