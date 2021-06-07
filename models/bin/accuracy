@@ -1,0 +1,77 @@
+#!/usr/bin/env python
+
+import os
+import os.path as osp
+import click
+from copy import deepcopy
+from itertools import product
+
+
+def parse_line(l):
+    return l.strip().split('\t')
+
+
+def read_headers(f):
+    return parse_line(f.readline().replace("question_type", "template"))
+
+
+def parse_int(k, v):
+    return int(v) if k.endswith("_index") else v
+
+
+def lines2records(headers, lines):
+    records = {}
+    for entry in lines:
+        try:
+            vid, qid = map(int, entry[:2])
+        except ValueError:
+            1 == 1
+        record = {k:parse_int(k,v) for (k,v) in zip(headers[2:], entry[2:])}
+        records[vid,qid] = record
+    return records
+
+
+def read_file(f):
+    headers = read_headers(f)
+    lines = [parse_line(l) for l in f.readlines()]
+    f.close()
+    return lines2records(headers, lines)
+
+@click.command()
+@click.argument("answers-file", type=click.File("r"))
+@click.argument("predictions-file", type=click.File("r"))
+@click.option("--mode", default="split")
+@click.option("-d", "--delimiter", default="tab")
+def main(answers_file, predictions_file, mode, delimiter):
+    delimiter = "\t" if delimiter == "tab" else delimiter
+    delimiter = "," if delimiter == "comma" else delimiter
+    answers = read_file(answers_file)
+    predictions = read_file(predictions_file)
+    assert sorted(answers.keys()) == sorted(predictions.keys())
+    merged = deepcopy(answers)
+    for (vid, qid) in merged.keys():
+        merged[vid,qid].update(predictions.get((vid,qid)))
+
+    num_correct = 0
+    for (k, v) in merged.items():
+        if v["prediction"] == v["answer"]:
+            num_correct += 1
+    overall_acc = round(100 * num_correct / len(merged), 2)
+
+    task_num_correct, task_num_examples = dict(), dict()
+    for (k, v) in merged.items():
+        task = v["template"]
+        task_num_examples[task] = 1 + task_num_examples.get(task, 0)
+        if v["prediction"] == v["answer"]:
+            task_num_correct[task] = 1 + task_num_correct.get(task, 0)
+    tasks = sorted(list(task_num_examples.keys()))
+    for task in tasks:
+        num_examples = task_num_examples[task]
+        num_correct = task_num_correct.get(task, 0)
+        task_acc = round(100 * num_correct / num_examples, 2)
+        print("{}={}%".format(task, task_acc))
+    print("overall={}%".format(overall_acc))
+
+
+if __name__ == "__main__":
+    main()

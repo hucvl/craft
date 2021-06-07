@@ -1,0 +1,103 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import os.path as osp
+from copy import deepcopy
+
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
+from torch.utils.data import DataLoader
+import pytorch_lightning as pl
+import hydra
+from omegaconf import OmegaConf
+
+from intphys import *
+from intphys.data import train_collate_fn as collate_fn
+from intphys.data import *
+from intphys.experiment import Experiment
+from intphys.datamodule import DataModule
+
+
+CONFIG_DIR = osp.abspath(osp.join(__file__, "../..", "config"))
+
+
+def adapt2data(config, dataset):
+    if config["model"].get("input_size") is None:
+        config["model"]["input_size"] = len(dataset.question_vocab)
+    if config["model"].get("output_size") is None:
+        config["model"]["output_size"] = len(dataset.answer_vocab)
+    if config["model"].get("depth_size") is None:
+        config["model"]["depth_size"] = dataset.fps * dataset.NUM_SECONDS
+    if config["model"].get("input_width") is None:
+        config["model"]["input_width"] = dataset.WIDTH
+    if config["model"].get("input_height") is None:
+        config["model"]["input_height"] = dataset.HEIGHT
+    return config
+
+
+@hydra.main(config_path=CONFIG_DIR, config_name="train")
+def train(config):
+    config = OmegaConf.to_container(config)
+    config = pl.utilities.parsing.AttributeDict(config)
+    pl.seed_everything(config["seed"], workers=True)
+
+    # load data
+    dm = DataModule(config)
+    dm.setup(stage="fit")
+
+    # logger
+    config["logger"]["save_dir"] = osp.abspath(
+        osp.expanduser(config["logger"]["save_dir"]))
+    if config["logger"]["name"] is None:
+        model_name = config["model"]["architecture"]
+        dataset_name = config["dataset"]["name"]
+        split_config = config["dataset"]["params"].get("split_info", "random")
+        config["logger"]["name"] = f"{model_name}-{dataset_name}-{split_config}"
+    logger = pl.loggers.TensorBoardLogger(**config["logger"])
+
+    # checkpoint
+    checkpoints_path = osp.join(logger.log_dir, "checkpoints")
+    config["checkpoint"]["filename"] = "{epoch:03d}"
+    config["checkpoint"]["dirpath"] = checkpoints_path
+    checkpoint_callback = pl.callbacks.ModelCheckpoint(**config["checkpoint"])
+    last_ckpt = osp.join(checkpoints_path, "last.ckpt")
+    last_ckpt = last_ckpt if osp.isfile(last_ckpt) else None
+    ckpt_path = config["trainer"]["resume_from_checkpoint"]
+
+    if last_ckpt is not None and ckpt_path is not None:
+        raise Exception("resume checkpoint passed (last.ckpt exists already)")
+    
+    if config["trainer"]["resume_from_checkpoint"] is None:
+        config["trainer"]["resume_from_checkpoint"] = ckpt_path = last_ckpt
+
+    if ckpt_path is not None and not osp.isfile(ckpt_path):
+        raise Exception("ckpt does not exist at {}".format(
+            config["trainer"]["resume_from_checkpoint"]))
+
+    # adapt model to dataset
+    config = adapt2data(deepcopy(config), dm.train_data)
+
+    # initialize experiment
+    experiment = Experiment(config)
+
+    # create data loaders
+    dm.train_data.adapt2model(experiment.model)
+    dm.val_data.adapt2model(experiment.model)
+    if config["dataset"]["params"]["cached"]:
+        dm.train_data.build_cache()
+        dm.val_data.build_cache()
+
+    # create trainer object
+    trainer = pl.Trainer(
+        logger=logger,
+        callbacks=[checkpoint_callback],
+        deterministic=True,
+        **config["trainer"])
+
+    trainer.fit(experiment, dm)
+
+
+if __name__ == "__main__":
+    train()

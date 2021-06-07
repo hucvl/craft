@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import os.path as osp
+
+import torch
+import torch.nn as nn
+from torch.nn import functional as F
+from torch.utils.data import DataLoader
+import pytorch_lightning as pl
+import hydra
+
+
+from intphys import *
+from intphys.data import inference_collate_fn as collate_fn
+from intphys.datamodule import DataModule
+
+
+CONFIG_DIR = osp.abspath(osp.join(__file__, "../..", "config"))
+
+
+@hydra.main(config_path=osp.join(CONFIG_DIR, "generate.yaml"))
+def generate(config):
+    config = pl.utilities.parsing.AttributeDict(config)
+    pl.seed_everything(config["seed"])
+
+    if config["output"] is None:
+        raise("output is a required parameter.")
+    delimiter = config.get("delimiter", "tab")
+    delimiter = "," if delimiter != "tab" else "\t"
+
+    # load data/model
+    experiment = Experiment.load_from_checkpoint(config["checkpoint"])
+    experiment.config["output"] = osp.abspath(osp.expanduser(config["output"]))
+    experiment.generate_flag = True
+
+    config["model"] = experiment.config["model"]
+    dm = DataModule(config)
+    dm.setup(stage="test")
+    dm.test_data.adapt2model(experiment.model)
+
+    if experiment.generate_flag == True:
+        filepath = config["output"]
+        parent_dir = osp.dirname(filepath)
+        osp.makedirs(parent_dir) if not osp.isdir(parent_dir) else None
+        with open(filepath, "w") as f:
+            headers = ["video_index", "question_index", "split", "prediction"]
+            f.write(delimiter.join(headers) + "\n")
+
+    # trainer
+    trainer = pl.Trainer(logger=False,
+                         checkpoint_callback=False,
+                         **config["trainer"])
+    trainer.test(experiment, datamodule=dm)
+
+if __name__ == "__main__":
+    generate()

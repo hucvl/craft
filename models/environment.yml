@@ -1,0 +1,9 @@
+name: intphys
+dependencies:
+  - python=3.8
+  - ipython=7.16
+  - pip=20.1
+  - pip:
+      - -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
+      - ipdb
+      - -e .

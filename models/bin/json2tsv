@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import os.path as osp
+
+import click
+from tqdm import tqdm
+
+from intphys.data import CRAFT
+
+
+def json2tsv(path, split_info="random"):
+    path = osp.abspath(osp.expanduser(path))
+    dataset = CRAFT(path=path, split="test", split_info=split_info)
+    tsv_file = osp.join(path, f"questions-{split_info}.tsv")
+
+    with open(tsv_file, "w") as f:
+        headers = (
+            "video_index",
+            "question_index",
+            "split",
+            "question_type",
+            "question_family_index",
+            "question",
+            "answer",
+        )
+
+        # write first row, headers
+        f.write("\t".join(headers) + "\n")
+
+        for question in tqdm(dataset.questions):
+            columns = [str(question[k]).lower() for k in headers]
+            f.write("\t".join(columns) + "\n")
+    print("done")
+
+
+@click.command()
+@click.argument("path", type=click.Path(exists=True))
+def main(path):
+    json2tsv(path, split_info="random")
+    json2tsv(path, split_info="hard")
+
+
+if __name__ == "__main__":
+    main()

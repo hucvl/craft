@@ -1,0 +1,23 @@
+# @package _group_
+architecture: LSTMCNNVideoBaseline
+input_size: null
+output_size: null
+pool_size: 5
+dropout: 0.2
+question_encoder:
+  architecture: LSTMEncoder
+  hidden_size: 256
+  embed_size: 256
+  vocab_size: null
+  bidirectional: false
+frame_encoder:
+  architecture: r3d_18
+  input_size: 256
+  pretrained: true
+  freeze: false
+  num_layers: 4
+mlp:
+  activation: relu
+  num_layers: 2
+  hidden_size: 256
+  input_size: null

@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+
+import os
+import os.path as osp
+
+import click
+
+from intphys.data import CRAFT
+
+
+def format_acc(acc):
+    return round(100 * acc, 2)
+
+
+@click.command()
+@click.option("--path", type=click.Path(exists=True))
+@click.option("--test-split", type=str, default="test")
+@click.option("--split-info", type=str, default="random")
+def main(path, test_split, split_info):
+    path = osp.abspath(osp.expanduser(path))
+    train_data = CRAFT(path=path, split="train", split_info=split_info)
+    test_data = CRAFT(path=path, split=test_split, split_info=split_info)
+
+    # most frequent answer
+    answer_dict = dict()
+    for q in train_data.questions:
+        answer = q["answer"].lower()
+        answer_dict[answer] = 1 + answer_dict.get(answer, 0)
+   
+    most_frequent, frequency = None, 0
+    for (answer, count) in answer_dict.items():
+        if count > frequency:
+            most_frequent = answer
+            frequency = count 
+    
+    num_correct, num_examples = dict(), dict()
+    for q in test_data.questions:
+        subtask = q["question_type"].lower()
+        if q["answer"].lower() == most_frequent:
+            num_correct[subtask] = 1 + num_correct.get(subtask, 0)
+        num_examples[subtask] = 1 + num_examples.get(subtask, 0)
+
+    acc = format_acc(sum(num_correct.values()) / sum(num_examples.values()))
+    print("most frequent answer = {}, accuracy = {}%".format(
+        most_frequent, acc))
+    for subtask in sorted(num_correct.keys()):
+        acc = num_correct[subtask] / num_examples[subtask]
+        print("-- task = {}, accuracy = {}%".format(subtask, format_acc(acc)))
+
+    answer_dict = dict()
+    for q in train_data.questions:
+        answer = q["answer"].lower()
+        answer_type = q["answer_type"].lower()
+        if not answer_type in answer_dict.keys():
+            answer_dict[answer_type] = dict()
+        this_dict = answer_dict[answer_type]
+        this_dict[answer] = 1 + this_dict.get(answer, 0)
+    
+    most_frequent = {k: None for (k,v) in answer_dict.items()}
+    frequency = {k: 0 for (k,v) in answer_dict.items()}
+    for (answer_type, this_answer_dict) in answer_dict.items():
+        for (answer, count) in this_answer_dict.items():
+            if count > frequency[answer_type]:
+                most_frequent[answer_type] = answer
+                frequency[answer_type] = count
+  
+    num_correct, num_examples = dict(), dict() 
+    for q in test_data.questions:
+        subtask = q["question_type"].lower()
+        answer = q["answer"].lower()
+        answer_type = q["answer_type"].lower()
+        if answer == most_frequent[answer_type]:
+            num_correct[subtask] = 1 + num_correct.get(subtask, 0)
+        num_examples[subtask] = 1 + num_examples.get(subtask, 0)
+    
+    acc = format_acc(sum(num_correct.values()) / sum(num_examples.values()))
+    print("\nanswer-type based most frequent answer accuracy = {}%".format(acc))
+    for subtask in sorted(num_correct.keys()):
+        acc = num_correct[subtask] / num_examples[subtask]
+        print("-- task = {}, accuracy = {}%".format(subtask, format_acc(acc)))
+
+
+if __name__ == "__main__":
+    main()

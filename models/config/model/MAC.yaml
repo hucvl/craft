@@ -1,0 +1,19 @@
+# @package _group_
+architecture: MACBaselineLF
+input_size: null
+output_size: null
+input_width: null
+input_height: null
+dropout: 0.2
+pool_size: 5
+mac:
+  dim: 256
+  embed_hidden: 256
+  max_step: 12
+  self_attention: false
+  memory_gate: false
+frame_encoder:
+  architecture: resnet18
+  pretrained: true
+  freeze: false
+  num_layers: 4
