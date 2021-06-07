@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{70E0D639-DCBF-55D5-E5D7-E0AB5136BC36}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Testbed</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <EnableASAN>true</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <EnableASAN>true</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\x86\Debug\</OutDir>
+    <IntDir>obj\x86\Debug\Testbed\</IntDir>
+    <TargetName>Testbed</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\x86_64\Debug\</OutDir>
+    <IntDir>obj\x86_64\Debug\Testbed\</IntDir>
+    <TargetName>Testbed</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\x86\Release\</OutDir>
+    <IntDir>obj\x86\Release\Testbed\</IntDir>
+    <TargetName>Testbed</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\x86_64\Release\</OutDir>
+    <IntDir>obj\x86_64\Release\Testbed\</IntDir>
+    <TargetName>Testbed</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;..\Testbed\Framework\SVQA;..\Testbed\Framework;..\Testbed\Tests\SVQA;..\Testbed\Tests\SVQA\Scenes</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;..\Testbed\Framework\SVQA;..\Testbed\Framework;..\Testbed\Tests\SVQA;..\Testbed\Tests\SVQA\Scenes</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;..\Testbed\Framework\SVQA;..\Testbed\Framework;..\Testbed\Tests\SVQA;..\Testbed\Tests\SVQA\Scenes</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\;..\Testbed\Framework\SVQA;..\Testbed\Framework;..\Testbed\Tests\SVQA;..\Testbed\Tests\SVQA\Scenes</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Testbed\Framework\Camera.hpp" />
+    <ClInclude Include="..\Testbed\Framework\ControllerParser.h" />
+    <ClInclude Include="..\Testbed\Framework\DebugDraw.h" />
+    <ClInclude Include="..\Testbed\Framework\Simulation.h" />
+    <ClInclude Include="..\Testbed\Framework\SimulationDefines.h" />
+    <ClInclude Include="..\Testbed\Framework\SimulationMaterial.h" />
+    <ClInclude Include="..\Testbed\Framework\SimulationRenderer.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\CausalEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\CausalEvents.h" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\CausalEventType.h" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\CausalGraph.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\CollisionEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\ContainerEndUpEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\EndEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\EndTouchingEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\EventDetector.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\StartEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\SVQA\StartTouchingEvent.hpp" />
+    <ClInclude Include="..\Testbed\Framework\VideoWriter.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\JSONHelper.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\ObjectState.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\SceneState.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\ObstructionDemoSettings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\ObstructionDemoSimulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene10Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene10Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene11Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene11Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene12Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene12Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene13Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene13Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene14Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene14Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene15Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene15Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene16Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene16Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene17Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene17Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene18Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene18Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene19Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene19Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene1Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene1Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene20Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene20Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene2Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene2Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene3Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene3Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene4Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene4Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene5Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene5Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene6Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene6Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene7Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene7Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene8Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene8Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene9Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Scenes\Scene9Simulation.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\Settings.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\SimulationBase.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\SimulationID.h" />
+    <ClInclude Include="..\Testbed\Tests\SVQA\SimulationObject.h" />
+    <ClInclude Include="..\Testbed\glad\glad.h" />
+    <ClInclude Include="..\Testbed\glad\khrplatform.h" />
+    <ClInclude Include="..\Testbed\glfw\egl_context.h" />
+    <ClInclude Include="..\Testbed\glfw\glfw3.h" />
+    <ClInclude Include="..\Testbed\glfw\glfw3native.h" />
+    <ClInclude Include="..\Testbed\glfw\glfw_config.h" />
+    <ClInclude Include="..\Testbed\glfw\internal.h" />
+    <ClInclude Include="..\Testbed\glfw\wgl_context.h" />
+    <ClInclude Include="..\Testbed\glfw\win32_joystick.h" />
+    <ClInclude Include="..\Testbed\glfw\win32_platform.h" />
+    <ClInclude Include="..\Testbed\imgui\imconfig.h" />
+    <ClInclude Include="..\Testbed\imgui\imgui.h" />
+    <ClInclude Include="..\Testbed\imgui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="..\Testbed\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Testbed\imgui\stb_rect_pack.h" />
+    <ClInclude Include="..\Testbed\imgui\stb_textedit.h" />
+    <ClInclude Include="..\Testbed\imgui\stb_truetype.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Testbed\Framework\Camera.cpp" />
+    <ClCompile Include="..\Testbed\Framework\DebugDraw.cpp" />
+    <ClCompile Include="..\Testbed\Framework\Simulation.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SimulationMain.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SimulationMaterial.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SimulationRenderer.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\CausalEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\CausalGraph.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\CollisionEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\ContainerEndUpEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\EndEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\EndTouchingEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\StartEvent.cpp" />
+    <ClCompile Include="..\Testbed\Framework\SVQA\StartTouchingEvent.cpp" />
+    <ClCompile Include="..\Testbed\glad\glad.c" />
+    <ClCompile Include="..\Testbed\glfw\context.c" />
+    <ClCompile Include="..\Testbed\glfw\egl_context.c" />
+    <ClCompile Include="..\Testbed\glfw\init.c" />
+    <ClCompile Include="..\Testbed\glfw\input.c" />
+    <ClCompile Include="..\Testbed\glfw\monitor.c" />
+    <ClCompile Include="..\Testbed\glfw\vulkan.c" />
+    <ClCompile Include="..\Testbed\glfw\wgl_context.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_init.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_joystick.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_monitor.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_time.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_tls.c" />
+    <ClCompile Include="..\Testbed\glfw\win32_window.c" />
+    <ClCompile Include="..\Testbed\glfw\window.c" />
+    <ClCompile Include="..\Testbed\imgui\imgui.cpp" />
+    <ClCompile Include="..\Testbed\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\Testbed\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\Testbed\imgui\imgui_impl_glfw_gl3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Testbed\controller.json" />
+    <None Include="..\Testbed\Data\DroidSans.ttf" />
+    <None Include="..\Testbed\imgui\imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Box2D.vcxproj">
+      <Project>{A434E80C-1049-10BE-D9CA-B31D459E0CEF}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Testbed\Data\Textures\metal.png" />
+    <Image Include="..\Testbed\Data\Textures\terrain.jpg" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
