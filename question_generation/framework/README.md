@@ -1,6 +1,4 @@
 # CRAFT Dataset Generation Framework
 
-- TODO: Add some explanation here
-
 ### Usage
-Refer to samples/sample_50.py for the basic usage of the framework.
+Refer to [`samples/sample_framework_usage.py`](./samples) for the basic usage of the framework, and to [`main.py`](./main.py) for the entry point of the dataset generation scripts.

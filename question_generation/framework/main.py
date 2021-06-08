@@ -28,10 +28,12 @@ if __name__ == '__main__':
     ])
     logger.info("Dataset generation pipeline object initiated")
 
+    # Setup the configuration for dataset generation
     dataset_generation_config_file_path = "../config/craft_10000_config.json"
     config = DatasetGenerationConfig(FileIO.read_json(dataset_generation_config_file_path))
     logger.info("Dataset generation configuration file loaded")
 
+    # Send the first input to the pipeline
     craft_dataset_generation_pipeline.feed_first_stage(config)
 
     logger.info("Starting execution...")

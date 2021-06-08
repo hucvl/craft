@@ -1,5 +1,35 @@
 # CRAFT: A Benchmark for Causal Reasoning About Forces and inTeractions
 
+This folder contains the scripts to generate videos and questions. While [`/framework`](./framework) contains scripts to generate a dataset and run simulations, [`/svqa`](./svqa) contains question generation scripts. On the other hand, [`/gui`](./gui) contains a PyQt5 program to view a generated dataset.
+
+Folder structure of a generated dataset is as follows:
+```
+- Dataset folder
+  - /intermediates          (A folder for intermediate outputs, may be used for debugging purposes.)
+    - /sid_1
+      - 000000.json         (One simulation output including the variations.)
+      - 000001.json
+        ...
+      - /debug              (A folder for command line outputs from simulations)
+      - /controllers        (A folder for controller files for simulation inputs)
+      - /perturbations      (Contains perturbation outputs for each simulation instance)
+      - /variations         (Contains variation outputs for each simulation instance)
+      - /questions          (Contains both original questions generated from a simulation and its variations, and questions that are sieved with perturbations)
+    - /sid_2
+      ...
+    ...
+  - /videos
+    - /sid_1
+      - 000000.mpg
+      - 000001.mpg
+        ...
+  - dataset_minimal.json    (Flat JSON array of questions in the dataset without properties like "program" for each question.)
+  - dataset.json            (This JSON file is organized per-simulation, and also includes "program" property for each question.)
+
+```
+
+___
+
 ## Objects
 
 ### Shapes
