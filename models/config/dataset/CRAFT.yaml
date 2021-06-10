@@ -1,7 +1,7 @@
 # @package _group_
 name: CRAFT
 params:
-  path: /userfiles/ikesen16/data/craft
+  path: "./path/to/dataset"
   split_info: "random"
   fps: 5
   cached: false

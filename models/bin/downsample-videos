@@ -1,10 +1,9 @@
 #!/bin/bash
 
-FPS="5"
-# DATASET_DIR="/kuacc/users/ikesen16/data/intphys/Dataset_3000_230920"
-DATASET_DIR="/userfiles/ikesen16/data/craft"
+DATASET_DIR=${DATASET_DIR:-"/userfiles/ikesen16/data/craft"}
+FPS=${FPS:-"5"}
 VIDEOS_DIR="$DATASET_DIR/videos"
-DOWNSAMPLED_DIR="/kuacc/users/ikesen16/data/downsampled/${FPS}-fps"
+DOWNSAMPLED_DIR="${DATASET_DIR}/downsampled/${FPS}-fps"
 
 if [ ! -d "$DATASET_DIR" ]; then
     echo "Dataset directory does not exist."; exit 1
@@ -26,3 +25,4 @@ for sim_id in "${sim_dirs[@]}"; do
 		       "$downsampled_path" > /dev/null 2>&1
     	done
 done
+
